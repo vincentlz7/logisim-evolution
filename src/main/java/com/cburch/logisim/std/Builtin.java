@@ -42,6 +42,13 @@ public class Builtin extends Library {
 
   private List<Library> libraries = null;
 
+//  Please return these to the default.templ file if you wish to readd any of these libraries in future years.
+//   <lib name="B" desc="#Input/Output-Extra" />
+//   <lib name="9" desc="#BFH-Praktika" />
+//   <lib name="3" desc="#Arithmetic" />
+//   <lib name="C" desc="#Soc" />
+//   <lib name="A" desc="#TTL" />
+//   <lib name="7" desc="#TCL" />
   public Builtin() {
     libraries =
         Arrays.asList(
@@ -49,16 +56,17 @@ public class Builtin extends Library {
             new GatesLibrary(),
             new WiringLibrary(),
             new PlexersLibrary(),
-            new ArithmeticLibrary(),
             new MemoryLibrary(),
             new IoLibrary(),
-            new TtlLibrary(),
             new HdlLibrary(),
-            new TclLibrary(),
-            new BfhLibrary(),
-            new Components(),
-            new ExtraIoLibrary(),
-            new Soc());
+            new Components()
+//            new ArithmeticLibrary(),
+//            new TtlLibrary(),
+//            new TclLibrary(),
+//            new BfhLibrary(),
+//            new ExtraIoLibrary(),
+//            new Soc()
+        );
   }
 
   @Override
