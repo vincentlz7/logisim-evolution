@@ -144,10 +144,13 @@ public class Value {
     }
     if (radix == 10 && t.charAt(0) == '-') value = -value;
 
-    if (w == 64) {
+    if (w == 32) {
+      if (((value & 0x7FFFFFFF) >> (w - 1)) != 0)
+        throw new Exception("Too many bits in \"" + t + "\"");
+    } else if (w == 64){
       if (((value & 0x7FFFFFFFFFFFFFFFL) >> (w - 1)) != 0)
         throw new Exception("Too many bits in \"" + t + "\"");
-    } else {
+    }else {
       if ((value >> w) != 0) throw new Exception("Too many bits in \"" + t + "\"");
     }
 
@@ -531,6 +534,15 @@ public class Value {
     if (error != 0) return -1L;
     if (unknown != 0) return -1L;
     return value;
+  }
+
+  // Dangerous convert to integer
+  public int toIntValue(){
+    if (error != 0) return -1;
+    if (unknown != 0) return -1;
+    if (value > Integer.MAX_VALUE)
+      return -1;
+    return (int) value;
   }
 
   public float toFloatValue() {
